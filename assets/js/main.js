@@ -36,25 +36,33 @@ console.log(bombs);
 //* Gioco
 
 var punti = 0;
-var possibilita = 4;
+var possibilita = 3;
 var disinneschi = [];
 
 do {
+    //Chiedere all' utente di inserire un numero tra 1 e 100
     var scelta = Number(prompt("Inserisci un numero"));
 
-    if(!isNaN(scelta)){
-        alert("Devi inserire un numero")
+    //Verificare se input utente è un numero
+    if(isNaN(scelta)){
+        alert("Devi inserire un numero");
 
-    } else if (!(scelta => 1) && !(scelta <= 100)) {
-        alert("Devi inserire  un numero compreso tra 1 e 100")
+    } else if (scelta < 1 || scelta >100) {
+        alert("Devi inserire  un numero compreso tra 1 e 100");
 
     } else if (bombs.includes(scelta)){
-        alert("BOOOOM! Hai disinnescato " + punti " bombe")
+        alert("BOOOOM! Hai disinnescato " + punti + " bombe");
 
     } else if (disinneschi.includes(scelta)){
-        alert("Numero già inserito")
+        alert("Numero già inserito");
     } else {
-        disinneschi.push(scelta)
+        disinneschi.push(scelta);
+        punti = punti + 1;
     }
+    console.log(disinneschi);
 
-} while (disinneschi.length < possibilita)
+} while (disinneschi.length < possibilita && !bombs.includes(scelta) )
+
+if (disinneschi.length == possibilita){
+    alert("Complimenti sei un artificiere incredibile!")
+}
